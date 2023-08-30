@@ -1,0 +1,136 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Currency";
+}<html lang="en">
+<head>
+<title>Excange Converter</title>
+</head>
+<style>
+
+    body{
+        background-color: rgb(35, 35, 35);
+    }
+
+    .header-background {
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255, 0.1);
+        color: white;
+        padding: 20px 0;
+    }
+
+    .site-container {
+        border-radius: 10px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .valyuta-navbar {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .navbar-toggler {
+        border: none;
+        background-color: transparent;
+    }
+
+    .navbar-toggler-icon {
+        background-color: white;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 15px;
+    }
+
+    .navbar-nav .nav-link {
+        color: white;
+    }
+
+    .nav-link:hover {
+        color: #ffc107;
+    }
+
+    #main {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .footer-top-text {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #9ea2a8;
+    }
+
+    .footer-content {
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-top: 1px solid #ccc;
+    }
+
+    .footer-content a {
+        margin-right: 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+<div id="app" class="header-background">
+<div class="site-container">
+<div class="container-fluid mt-lg-5 mb-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-white valyuta-navbar">
+<a class="navbar-brand" href="/en/currency-convertor">
+<img src="/statics/photos/valyuta-logo.png" alt>
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a class="nav-link"  asp-area="" asp-page="/Converter">
+<p class="text-success">Converter</p>
+</a>
+</li>
+<li>
+<a class="nav-link" asp-area="" asp-page="/WhatIsCurrency">
+<p class="text-success">What is Currency?</p>
+</a>
+</li>
+</ul>
+<date-changer></date-changer>
+</div>
+</nav>
+</div>
+</div>
+<div id="main">
+<h1 style="margin-left: 100%;">Currency </h1>
+<p>- asp.net project:)</p>
+<img style="align-items:center" src="~/css/dollar (1).png"/>
+</div>
+<div class="footer-top-text">
+<p style="line-height: 16px; font-size: 12px; color: #9ea2a8;">
+Currency converter plays an important role in our daily lives. Price changes affect our budget as we buy the products over the internet sold in different currencies. We provide you with the live currency converter to instantly convert from one currency to another and control your finances. </p>
+</div>
+<div class="d-none d-md-block" style="max-width: 1280px; margin: auto;">
+<div class="row footer-content">
+<div class="col-lg-6 px-0">
+<a target="_blank" href="https://www.instagram.com/special_in_every_moment/">Instagram</a> |
+<a target="_blank" href="https://www.tiktok.com/@@special_in_every_moment">TikTok</a>
+</div>
+<div class="col-lg-6 text-sm-left text-md-right">
+<a role="button" onclick="openContactModal()" data-toggle="modal" data-backdrop="static" data-target="#contact_modal">Contact</a> |
+<a href="https://www.valyuta.com/en/currency-convertor">© Currency.com 2023</a>
+</div>
+</div>
+</div>
+<footer-section></footer-section>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿@page
+@model CURRENCY.Pages.Converter
+
+@{
+    ViewData["Title"] = "Converter";
+}
+<body id="box">
+<div class="inner-container">
+    <div class="converter-div">
+        <form method="post" class="form">
+            <div class="converter-line">
+                <ul class="line-list">
+                    <li class="list-element">
+                        <label>From</label>
+                        <div class="input-div">
+                            <input id="fromBox" type="text" placeholder="Type to search..." list="Currency" asp-for="FromCode" />
+                            <datalist id="Currency">
+                                @if (Model.Response.ValTypes.Count > 1 && Model.Response.ValTypes[1].Type == "Xarici valyutalar")
+                                {
+                                    var valutes = Model.Response.ValTypes[1].Valutes;
+                                    @foreach (var valute in valutes)
+                                    {
+                                        <option>@valute.Code</option>
+                                    }
+                                }
+                            </datalist>
+                            <span asp-validation-for="FromCode" class="text-danger"></span>
+                        </div>
+                    </li>
+
+                    <li class="list-element">
+                        <label>To</label>
+                        <div class="input-div">
+                            <input id="toBox" type="text" placeholder="Type to search..." list="Currency" asp-for="ToCode" />
+                            <datalist id="Currency">
+                                @if (Model.Response.ValTypes[1].Type == "Xarici valyutalar")
+                                {
+                                    var valutes = Model.Response.ValTypes[1].Valutes;
+                                    @foreach (var valute in valutes)
+                                    {
+                                        <option>@valute.Code</option>
+                                    }
+                                }
+                            </datalist>
+                            <span asp-validation-for="ToCode" class="text-danger"></span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div>
+                    <button class="convertBtn">Convert</button>
+                </div>
+            </div>
+
+            <div class="converter-line">
+                <ul class="line-list">
+                    <li class="list-element">
+                        <label>Amount</label>
+                        <div class="input-div">
+                            <input id="amountBox" type="text" placeholder="0.00" asp-for="Value" />
+                            <span asp-validation-for="Value" class="text-danger"></span>
+                        </div>
+                    </li>
+
+                    <li class="list-element">
+                        <label>Result</label>
+                        <div class="output-div">
+                            <h3> @Model.Result @Model.ToCode</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </form>
+    </div>
+
+    <div class="chart-div">
+
+    </div>
+</div>
+</body>
+
+
+
