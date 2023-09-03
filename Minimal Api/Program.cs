@@ -7,8 +7,6 @@ using MinimalApi.Models;
 using MinimalApi.TodoCl;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 
 var app = builder.Build();
