@@ -26,4 +26,6 @@ app.MapControllerRoute(
 
 app.Run();
 /*Взять мой проекта FluentValidation с гитхаб. 
- Реализовать БД с помощью FluentApi. */
+ Реализовать БД с помощью FluentApi.
+
+Сделано в SQL Server Object Explorer */
