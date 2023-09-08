@@ -2,79 +2,74 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using ASP.NET_Core_.Model;
+using System.Text;
 
 namespace ASP.NET_Core_.Pages
 {
     public class QuotesPageModel : PageModel
     {
-        public static List<Quote> quotes = new List<Quote>();
-        public string? SearchString { get; set; }
-
         public string? ResultAuthor { get; set; }
 
         public string? ResultQuote { get; set; }
 
-        //[HttpGet]
-        public void OnGet() // Dla proverki Thomas Edison 
+        [HttpPost]
+        public async Task OnPost() // Dla proverki Kevin
         {
-            //int quote = -1;
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                FetchQuotesFromApi();
-                GetQuoteIndexByAuthor(SearchString);
+            string searchString = Request.Form["searchString"];
 
-                //return quote;
-            }
-            else
+            if (!string.IsNullOrEmpty(searchString))
             {
-                ResultQuote = "No quote found for the specified author.";
-                ResultAuthor = "-";
-                //return quote;
+
+                await FetchQuotesFromApi(searchString);
+
             }
         }
 
-        public async Task FetchQuotesFromApi()
+
+        public async Task FetchQuotesFromApi(string searchString)
         {
             using (var httpClient = new HttpClient())
             {
-                try
-                {
-                    var apiUrl = "https://type.fit/api/quotes";
-                    var response = await httpClient.GetAsync(apiUrl);
+                StringBuilder? result;
+                HttpClient client = new();
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var content = await response.Content.ReadAsStringAsync();
-                        quotes = JsonConvert.DeserializeObject<List<Quote>>(content);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to fetch quotes from API. Status code: {response.StatusCode}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error occurred while fetching quotes: {ex.Message}");
-                }
-            }
-        }
+                HttpResponseMessage message = await client.GetAsync("https://dummyjson.com/quotes");
 
-        public void GetQuoteIndexByAuthor(string SearchString)
-        {
-            int result = -1;
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                for (int i = 0; i < quotes.Count - 1; i++)
+                if (message.IsSuccessStatusCode)
                 {
-                    if (quotes[i].Author.Contains(SearchString))
-                    {
-                        result = i;
-                        break;
+                    result = new(await message.Content.ReadAsStringAsync());
+
+                        var json = result.ToString();
+                        if (result != null)
+                        {
+                            var res = JsonConvert.DeserializeObject<Result>(json);
+                            int resultind = -1;
+
+                            if (!string.IsNullOrEmpty(searchString))
+                            {
+                                for (int i = 0; i < res.quotes.Count - 1; i++)
+                                {
+                                    if (res.quotes[i].author.Contains(searchString))
+                                    {
+                                        resultind = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        if (resultind != -1)
+                        {
+                            ResultQuote = res.quotes[resultind].quote.ToString();
+                            ResultAuthor = res.quotes[resultind].author.ToString();
+                        }
+                        else
+                        {
+                            ResultQuote = "No quote found for the specified author.";
+                            ResultAuthor = "-";
+                        }
                     }
                 }
+     
             }
-            ResultQuote = quotes[result].Text;
-            ResultAuthor = quotes[result].Author;
         }
     }
 
