@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model ASP.NET_Core_.Pages.QuotesPageModel
 @{
 }
@@ -6,9 +6,9 @@
     <div id="about_quotes">
     <h1>Quotes</h1>
     </div>
-     <form method="get"> 
+     <form method="post"> 
         <div id="search">
-            <input type="text" asp-for="SearchString" placeholder="Enter author of quote..."/>
+            <input type="text" name="searchString" placeholder="Enter author of quote..."/>
         </div>
         <div id="btn">
             <button type="submit">Search</button> 
@@ -19,4 +19,3 @@
         </div>
     </form>
 </body>
-
