@@ -13,7 +13,7 @@ namespace ASP.NET_Core_.Pages
         public string? ResultQuote { get; set; }
 
         [HttpPost]
-        public async Task OnPost() // Dla proverki Kevin
+        public async Task OnPost() // Dla proverki: Kevin
         {
             string searchString = Request.Form["searchString"];
 
