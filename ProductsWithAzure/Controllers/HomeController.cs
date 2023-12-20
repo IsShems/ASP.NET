@@ -20,7 +20,7 @@ namespace AzureTestTurboAz.Controllers
             ProductCategory.Allcategories = _repository.GetAllProductCategory();
             Product.Selectedproducts = _repository.GetAllProduct();
             var allProducts = _repository.GetAllProduct();
-            string blobSasUrl = $"https://shhh.blob.core.windows.net/shhhblob/6fe36bb08118edb1c28f99513b32132f.jpg?sp=r&st=2023-12-18T17:50:59Z&se=2023-12-19T01:50:59Z&spr=https&sv=2022-11-02&sr=c&sig=l5XMoS2ajM%2BIHRaDdKmdx1khYKqND5RAs%2FClAGU3Qi8%3D";
+            string blobSasUrl = $"https://url of blob :))";
             ViewBag.BlobSasUrl = blobSasUrl;
 
             return View();
@@ -33,7 +33,7 @@ namespace AzureTestTurboAz.Controllers
                 Product.Selectedproducts = _repository.GetByCategory(SelectedCategoryId);
             else
                 Product.Selectedproducts = _repository.GetAllProduct();
-             string blobSasUrl = $"https://shhh.blob.core.windows.net/shhhblob/6fe36bb08118edb1c28f99513b32132f.jpg?sp=r&st=2023-12-18T17:50:59Z&se=2023-12-19T01:50:59Z&spr=https&sv=2022-11-02&sr=c&sig=l5XMoS2ajM%2BIHRaDdKmdx1khYKqND5RAs%2FClAGU3Qi8%3D";
+             string blobSasUrl = $"https://url of blob :))";
              ViewBag.BlobSasUrl = blobSasUrl;
             return View(Product.Selectedproducts);
         }
@@ -44,7 +44,7 @@ namespace AzureTestTurboAz.Controllers
 
         public IActionResult ProductPage(int productId)
         {
-            string blobSasUrl = $"https://shhh.blob.core.windows.net/shhhblob/6fe36bb08118edb1c28f99513b32132f.jpg?sp=r&st=2023-12-18T17:50:59Z&se=2023-12-19T01:50:59Z&spr=https&sv=2022-11-02&sr=c&sig=l5XMoS2ajM%2BIHRaDdKmdx1khYKqND5RAs%2FClAGU3Qi8%3D";
+            string blobSasUrl = $"https://url of blob :))";
             ViewBag.BlobSasUrl = blobSasUrl;
             Product.pr = _repository.GetProductById(productId);
 
